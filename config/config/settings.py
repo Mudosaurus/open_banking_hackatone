@@ -31,8 +31,10 @@ INSTALLED_APPS = [
     'conventional_bank',
     'ob_service',
     'no_ob_service',
+    'hob_api',
     
     'drf_yasg',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

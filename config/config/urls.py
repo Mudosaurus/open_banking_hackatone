@@ -19,5 +19,6 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0),name='schema-swagger-ui'),
-    path('conventional_bank/', include('conventional_bank.urls'))
+    path('conventional_bank/', include('conventional_bank.urls')),
+    path('hob_api/', include('hob_api.urls')),
 ]
