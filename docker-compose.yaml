@@ -22,8 +22,6 @@ services:
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8090"
     volumes:
       - ./config/:/app
-    ports:
-      - "80:80"
     depends_on:
       - db
   nginx:
@@ -31,11 +29,11 @@ services:
      ports:
       - 80:80
       - 443:443
-     restart: always
+    restart: always
      depends_on:
       - db
       - web
-     volumes:
+    volumes:
       - ./certbot/www/:/var/www/certbot/:ro
   certbot:
     image: certbot/certbot:latest
