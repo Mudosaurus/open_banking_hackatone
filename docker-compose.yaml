@@ -26,5 +26,12 @@ services:
       - "80:80"
     depends_on:
       - db
+  nginx:
+     build: ./nginxbuilder/
+     ports:
+      - "443:443"
+     depends_on:
+      - db
+      - web
 volumes:
   postgres_data:
