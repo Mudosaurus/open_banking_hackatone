@@ -19,7 +19,7 @@ services:
 
   web:
     build: ./config/
-    command: bash -c "python manage.py migrate && python manage.py collectstatic && python manage.py runserver 0.0.0.0:80"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:80"
     volumes:
       - ./config/:/app
     ports:
@@ -29,9 +29,18 @@ services:
   nginx:
      build: ./nginxbuilder/
      ports:
-      - "443:443"
+      - 80:80
+      - 443:443
+    restart: always
      depends_on:
       - db
       - web
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:ro
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
 volumes:
   postgres_data:
