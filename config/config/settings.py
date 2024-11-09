@@ -31,8 +31,10 @@ INSTALLED_APPS = [
     'conventional_bank',
     'ob_service',
     'no_ob_service',
+    'hob_api',
     
     'drf_yasg',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -116,7 +118,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = 'static/'
+STATIC_ROOT = BASE_DIR / 'static/'
+STATICFILES_DIRS = BASE_DIR / 'assets/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
