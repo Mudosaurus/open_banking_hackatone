@@ -24,3 +24,9 @@ class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Account
         fields = ('id', 'holder', 'valute', 'balance')
+
+
+class LoanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Loan
+        fields = ('id', 'borrower', 'credit_sum', 'pay_rest', 'monthly_pay', 'get_date', 'repayment_date', 'documents')

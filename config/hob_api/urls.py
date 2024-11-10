@@ -8,6 +8,7 @@ router.register(r'test_models', views.TestModelViewSet)
 router.register(r'clients', views.ClientViewSet)
 router.register(r'valutes', views.ValuteViewSet)
 router.register(r'accounts', views.AccountViewSet)
+router.register(r'loans', views.LoanViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
