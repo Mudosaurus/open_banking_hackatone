@@ -56,10 +56,10 @@ def get_router() -> routers.DefaultRouter:
 def get_swagger_schema_view() -> type:
     return get_schema_view(
         openapi.Info(
-            title="TheSocial",
-            description="TheSocial (team87) Open Baning Api",
+            title="BlackCubics / Сервис согласий",
+            description="Open Baning Api (team87)",
             default_version='v1',
         ),
         public=True,
-        permission_classes=[permissions.AllowAny, ],
+        permission_classes=[permissions.AllowAny,],
     )
