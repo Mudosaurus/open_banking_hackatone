@@ -1,6 +1,11 @@
-from django.urls import path
+from rest_framework import routers
+
+from django.urls import include, path
 from . import views
 
+router = routers.DefaultRouter()
+router.register(r'', views.ConsentViewSet)
+
 urlpatterns = [
-    path('', views.ConsentViewSet.as_view()),
+    path('', include(router.urls)),
 ]
