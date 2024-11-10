@@ -22,17 +22,16 @@ services:
 
   web:
     build: ./config/
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:80"
+    ports:
+      - 80:80
     volumes:
       - ./config/:/app
-    ports:
-      - 8000:8000
     depends_on:
       - db
   nginx:
      build: ./nginxbuilder/
      ports:
-      - 80:80
       - 443:443
      restart: always
      depends_on:
