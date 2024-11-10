@@ -23,3 +23,7 @@ class AccountViewSet(ModelViewSet):
     queryset = models.Account.objects.all()
     serializer_class = serializers.AccountSerializer
     
+    
+class LoanViewSet(ModelViewSet):
+    queryset = models.Loan.objects.all()
+    serializer_class = serializers.LoanSerializer

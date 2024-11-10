@@ -1,4 +1,5 @@
 from django.db import models
+from .money_field import MoneyField
 
 
 class TestModel(models.Model):
@@ -41,8 +42,8 @@ class Valute(models.Model):
 
 class Account(models.Model):
     holder = models.ForeignKey(Client, on_delete=models.DO_NOTHING)
-    valute = models.ForeignKey(Valute, on_delete=models.DO_NOTHING)    
-    balance = models.BigIntegerField(default=0, blank=False, null=False)
+    valute = models.ForeignKey(Valute, on_delete=models.DO_NOTHING)
+    balance = MoneyField()
 
     def __str__(self):
         return f'Account of {self.holder} in {self.valute.code}'
@@ -51,3 +52,19 @@ class Account(models.Model):
         verbose_name = 'account'
         verbose_name_plural = 'accounts'
     
+    
+class Loan(models.Model):
+    borrower = models.ForeignKey(Client, on_delete=models.DO_NOTHING)
+    credit_sum = MoneyField()
+    pay_rest = MoneyField()
+    monthly_pay = MoneyField()
+    get_date = models.DateField(blank=False, null=False)
+    repayment_date = models.DateField(blank=False, null=False)
+    documents = models.TextField()
+    
+    def __str__(self):
+        return f'Loan of {self.borrower} from {self.get_date}'    
+    
+    class Meta:
+        verbose_name = 'loan '
+        verbose_name_plural = 'loans'
