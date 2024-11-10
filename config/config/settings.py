@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'ob_service',
     'no_ob_service',
     'hob_api',
+    'consent_service',
     
     'drf_yasg',
     'rest_framework',
@@ -76,6 +77,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': os.environ.get('POSTGRES_HOST', '81.200.153.241'),
         'NAME': os.environ.get('POSTGRES_NAME', 'postgres'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
+        'PORT': int(os.environ.get('POSTGRES_PORT', '5432'))
+    },
+    'consent_db': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('POSTGRES_HOST', '81.200.153.241'),
+        'NAME': os.environ.get('POSTGRES_CONSENT_NAME', 'consent'),
         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
         'PORT': int(os.environ.get('POSTGRES_PORT', '5432'))
