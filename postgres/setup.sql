@@ -1,0 +1,3 @@
+CREATE DATABASE ebank;
+CREATE DATABASE stylebank;
+CREATE DATABASE consent;

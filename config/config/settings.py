@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-4lflx99$8b03bmdzs=gm^wj@gr%k2js600m*$2s(k!9w6lv1a1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['81.200.153.241', 'spacecraft-it.ru', 'localhost']
+ALLOWED_HOSTS = ['81.200.153.241', 'spacecraft-it.ru', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -28,11 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'conventional_bank',
-    'ob_service',
-    'no_ob_service',
-    'hob_api',
+    'e_bank',
+    'style_bank',
     'consent_service',
+    'hob_api',
     
     'drf_yasg',
     'rest_framework',
@@ -81,6 +80,22 @@ DATABASES = {
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
         'PORT': int(os.environ.get('POSTGRES_PORT', '5432'))
     },
+    'e_bank_db': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('POSTGRES_HOST', '81.200.153.241'),
+        'NAME': os.environ.get('POSTGRES_EBANK_NAME', 'ebank'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
+        'PORT': int(os.environ.get('POSTGRES_PORT', '5432'))
+    },
+    'style_bank_db': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('POSTGRES_HOST', '81.200.153.241'),
+        'NAME': os.environ.get('POSTGRES_STYLEBANK_NAME', 'stylebank'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
+        'PORT': int(os.environ.get('POSTGRES_PORT', '5432'))
+    },
     'consent_db': {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': os.environ.get('POSTGRES_HOST', '81.200.153.241'),
@@ -90,6 +105,11 @@ DATABASES = {
         'PORT': int(os.environ.get('POSTGRES_PORT', '5432'))
     }
 }
+DATABASE_ROUTERS = [
+    'e_bank.db_router.EBankRouter',
+    'style_bank.db_router.StyleBankRouter',
+    'consent_service.db_router.ConsentRouter',
+]
 
 
 # Password validation

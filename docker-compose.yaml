@@ -3,29 +3,46 @@ version: "3.1"
 services:
 
   db:
+    build: ./postgres/
     restart: always
-    image: postgres
     container_name: django-openapi
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_NAME=postgres
+      - POSTGRES_EBANK_NAME=ebank
+      - POSTGRES_STYLEBANK_NAME=stylebank
       - POSTGRES_CONSENT_NAME=consent
       - POSTGRES_PORT=5432
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql@17/data/
 
   web:
     build: ./config/
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:80"
+    ports:
+      - 80:80
     volumes:
       - ./config/:/app
-    ports:
-      - "80:80"
     depends_on:
       - db
+  nginx:
+     build: ./nginxbuilder/
+     ports:
+      - 443:443
+     restart: always
+     depends_on:
+      - db
+      - web
+     volumes:
+      - ./certbot/www/:/var/www/certbot/:ro
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
 volumes:
   postgres_data:
