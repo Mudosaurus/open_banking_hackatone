@@ -66,5 +66,22 @@ class Loan(models.Model):
         return f'Loan of {self.borrower} from {self.get_date}'    
     
     class Meta:
-        verbose_name = 'loan '
+        verbose_name = 'loan'
         verbose_name_plural = 'loans'
+        ordering = ('get_date',)
+
+
+class Salary(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    date_time = models.DateTimeField(blank=False, null=False)
+    sum = MoneyField()
+    category = models.CharField(max_length=255, blank=False)
+    type = models.CharField(max_length=10, blank=False)
+    
+    def __str__(self):
+        return f'Salary of {self.account} at {self.date_time}'
+
+    class Meta:
+        verbose_name = 'salary'
+        verbose_name_plural = 'salaries'
+        ordering = ('date_time',)
