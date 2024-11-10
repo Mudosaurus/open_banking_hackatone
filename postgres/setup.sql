@@ -1,3 +1,3 @@
 CREATE DATABASE ebank;
 CREATE DATABASE stylebank;
-CREATE DATABASE consent;
+CREATE DATABASE consent_service_consent;
