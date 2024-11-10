@@ -10,6 +10,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_NAME=postgres
+      - POSTGRES_CONSENT_NAME=consent
       - POSTGRES_PORT=5432
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
