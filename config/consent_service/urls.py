@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.hello_world, name='consents start page'),
+    path('', views.ConsentViewSet),
 ]

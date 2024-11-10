@@ -1,4 +1,8 @@
-from django.http import HttpResponse, HttpRequest
+from rest_framework.viewsets import ModelViewSet
 
-def hello_world(request: HttpRequest) -> HttpResponse:
-    return HttpResponse("Consents!")
+from . import models
+from . import serializers
+
+class ConsentViewSet(ModelViewSet):
+    queryset = models.Consent.objects.all()
+    serializer_class = serializers.ConsentSerializer

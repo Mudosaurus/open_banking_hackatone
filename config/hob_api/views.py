@@ -1,4 +1,3 @@
-# from rest_framework.generics import ListAPIView
 from rest_framework.viewsets import ModelViewSet
 from . import serializers
 from . import models
