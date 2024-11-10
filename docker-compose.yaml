@@ -18,7 +18,6 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgsetup.sql:/docker-entrypoint-initdb.d/pgsetup.sql
       - postgres_data:/var/lib/postgresql/data/
 
   web:
