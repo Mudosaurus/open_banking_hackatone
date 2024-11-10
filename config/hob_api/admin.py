@@ -7,3 +7,6 @@ class TestModelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.TestModel, TestModelAdmin)
+admin.site.register(models.Client, admin.ModelAdmin)
+admin.site.register(models.Valute, admin.ModelAdmin)
+admin.site.register(models.Account, admin.ModelAdmin)
