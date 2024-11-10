@@ -79,7 +79,7 @@ class Salary(models.Model):
     type = models.CharField(max_length=10, blank=False)
     
     def __str__(self):
-        return f'Salary of {self.account} at {self.date_time}'
+        return f'{self.type} {self.category} of {self.account} at {self.date_time}'
 
     class Meta:
         verbose_name = 'salary'
