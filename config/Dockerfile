@@ -11,5 +11,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the application code
 COPY . .
 
+# Copy setup to initdb
+COPY setup.sql /docker-entrypoint-initdb.d/
+
 # Expose the port the app will run on
 EXPOSE 80

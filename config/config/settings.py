@@ -105,6 +105,11 @@ DATABASES = {
         'PORT': int(os.environ.get('POSTGRES_PORT', '5432'))
     }
 }
+DATABASE_ROUTERS = [
+    'e_bank.db_router.EBankRouter',
+    'style_bank.db_router.StyleBankRouter',
+    'consent_service.db_router.ConsentRouter',
+]
 
 
 # Password validation
