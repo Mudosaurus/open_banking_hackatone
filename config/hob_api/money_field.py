@@ -1,4 +1,5 @@
 from typing import Any
+
 from django.db.models import BigIntegerField
 
 
@@ -11,4 +12,3 @@ class MoneyField(BigIntegerField):
         name, path, args, kwargs = super().deconstruct()
         del kwargs["default"]
         return name, path, args, kwargs
-    

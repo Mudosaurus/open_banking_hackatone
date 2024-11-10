@@ -1,14 +1,3 @@
-from django.contrib import admin
-from . import models
+from hob_api.services import register_api_to_admin
 
-
-class TestModelAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(models.TestModel, TestModelAdmin)
-admin.site.register(models.Client, admin.ModelAdmin)
-admin.site.register(models.Valute, admin.ModelAdmin)
-admin.site.register(models.Account, admin.ModelAdmin)
-admin.site.register(models.Loan, admin.ModelAdmin)
-admin.site.register(models.Salary, admin.ModelAdmin)
+register_api_to_admin()

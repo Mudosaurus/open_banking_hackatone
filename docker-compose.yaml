@@ -10,12 +10,15 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_NAME=postgres
+      - POSTGRES_EBANK_NAME=ebank
+      - POSTGRES_STYLEBANK_NAME=stylebank
       - POSTGRES_CONSENT_NAME=consent
       - POSTGRES_PORT=5432
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "5432:5432"
     volumes:
+      - pgsetup.sql:/docker-entrypoint-initdb.d/pgsetup.sql
       - postgres_data:/var/lib/postgresql/data/
 
   web:
