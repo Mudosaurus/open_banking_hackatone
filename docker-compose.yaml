@@ -5,7 +5,6 @@ services:
   db:
     build: ./postgres/
     restart: always
-    image: postgres
     container_name: django-openapi
     environment:
       - POSTGRES_USER=postgres
