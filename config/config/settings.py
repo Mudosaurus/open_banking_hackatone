@@ -28,10 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'e_bank',
-    'style_bank',
-    'consent_service',
-    'hob_api',
+    'e_bank.apps.EBankConfig',
+    'style_bank.apps.StyleBankConfig',
+    'consent_service.apps.ConsentServiceConfig',
+    'hob_api.apps.HobApiConfig',
     
     'drf_yasg',
     'rest_framework',
