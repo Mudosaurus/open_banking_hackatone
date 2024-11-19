@@ -27,7 +27,7 @@ services:
       && python manage.py migrate --database=e_bank_db
       && python manage.py migrate --database=style_bank_db
       && python manage.py migrate
-      && python manage.py createsuperuser --username $DJANGO_SUPERUSER_USERNAME
+      && python manage.py createsuperuser --noinput --username $DJANGO_SUPERUSER_USERNAME
       && python manage.py runserver 0.0.0.0:80"
     environment:
       - DJANGO_SUPERUSER_USERNAME=admin
