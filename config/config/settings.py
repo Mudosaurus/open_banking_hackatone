@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-4lflx99$8b03bmdzs=gm^wj@gr%k2js600m*$2s(k!9w6lv1a1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['81.200.153.241', 'spacecraft-it.ru', 'localhost', '127.0.0.1', 'localhost:8080']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -28,10 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'e_bank',
-    'style_bank',
-    'consent_service',
-    'hob_api',
+    'e_bank.apps.EBankConfig',
+    'style_bank.apps.StyleBankConfig',
+    'consent_service.apps.ConsentServiceConfig',
+    'hob_api.apps.HobApiConfig',
     
     'drf_yasg',
     'rest_framework',
