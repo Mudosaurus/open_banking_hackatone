@@ -22,8 +22,7 @@ services:
 
   web:
     build: ./config/
-    command: bash -c "sleep 5 \
-                   && python manage.py migrate \
+    command: bash -c "sleep 5 && python manage.py migrate \
                    && python manage.py migrate --database=consent_db \
                    && python manage.py migrate --database=e_bank_db \
                    && python manage.py migrate --database=style_bank_db \
