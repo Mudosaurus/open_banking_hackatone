@@ -27,14 +27,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    'e_bank',
-    'style_bank',
-    'consent_service',
-    'hob_api',
-    
     'drf_yasg',
     'rest_framework',
+    'hob_api',
+    'consent_service',
+    'e_bank',
+    'style_bank',
 ]
 
 MIDDLEWARE = [
