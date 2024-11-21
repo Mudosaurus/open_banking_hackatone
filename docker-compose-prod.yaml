@@ -1,0 +1,31 @@
+version: "3.1"
+
+services:
+  web:
+    build: ./config/
+    command: bash -c "sleep 5 && python manage.py migrate \
+                   && python manage.py migrate --database=consent_db \
+                   && python manage.py migrate --database=e_bank_db \
+                   && python manage.py migrate --database=style_bank_db \
+                   && python manage.py runserver 0.0.0.0:80"
+    ports:
+      - 80:80
+      - 8000:80
+    volumes:
+      - ./config/:/app
+  nginx:
+     build: ./nginxbuilder/
+     ports:
+      - 443:443
+     restart: always
+     depends_on:
+      - web
+     volumes:
+      - ./certbot/www/:/var/www/certbot/:ro
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+volumes:
+  postgres_data:
