@@ -12,7 +12,7 @@ class ClientSerializer(serializers.ModelSerializer):
 class ValuteSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Valute
-        fields = ('id', 'code', 'name')
+        fields = ('code', 'name')
         
                 
 class AccountSerializer(serializers.ModelSerializer):

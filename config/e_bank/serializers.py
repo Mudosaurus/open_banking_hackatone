@@ -12,7 +12,7 @@ class EBankClientSerializer(serializers.ModelSerializer):
 class EBankValuteSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.EBankValute
-        fields = ('id', 'code', 'name')
+        fields = ('code', 'name')
 
 
 class EBankAccountSerializer(serializers.ModelSerializer):

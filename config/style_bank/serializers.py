@@ -12,7 +12,7 @@ class StyleBankClientSerializer(serializers.ModelSerializer):
 class StyleBankValuteSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.StyleBankValute
-        fields = ('id', 'code', 'name')
+        fields = ('code', 'name')
 
 
 class StyleBankAccountSerializer(serializers.ModelSerializer):
