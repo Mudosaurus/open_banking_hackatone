@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('hob_api', '0001_initial'),
         ('hob_api', '0002_remove_valute_id_alter_valute_code'),
     ]
 
