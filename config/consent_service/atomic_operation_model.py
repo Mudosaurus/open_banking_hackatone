@@ -19,7 +19,8 @@ class AtomicOperation(models.Model):
     operation_type = models.ForeignKey(OperationType, null=False, on_delete=models.RESTRICT)
     agent = models.ForeignKey(Agent, blank=False, null=False, on_delete=models.RESTRICT, related_name='%(class)s_agent')
     contragent = models.ForeignKey(Agent, on_delete=models.RESTRICT, null=True, blank=True, related_name='%(class)s_contragent')
-    details = models.JSONField()
+    agent_details = models.JSONField()
+    contragent_details = models.JSONField()
     
     def __str__(self):
         return f'atomic operation {self.operation_type.code} in transaction {self.transaction} in state {self.state}, details: {self.details}'
@@ -33,5 +34,5 @@ class AtomicOperation(models.Model):
 class AtomicOperationSerializer(serializers.ModelSerializer):
     class Meta:
         model = AtomicOperation
-        fields = ('id', 'transaction', '_order', 'state', 'last_state_date_time', 'operation_type', 'agent', 'contragent', 'details')
+        fields = ('id', 'transaction', '_order', 'state', 'last_state_date_time', 'operation_type', 'agent', 'contragent', 'agent_details', 'contragent_details')
         

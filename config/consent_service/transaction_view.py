@@ -11,7 +11,7 @@ class TransactionViewSet(ModelViewSet):
     serializer_class = TransactionSerializer
 
     
-id_param = openapi.Parameter('id', openapi.IN_HEADER, description="transaction id", type=openapi.TYPE_STRING)
+id_param = openapi.Parameter('id', openapi.IN_HEADER, description="transaction id", type=openapi.FORMAT_UUID)
 
     
 @swagger_auto_schema(method='post', manual_parameters=[id_param])
