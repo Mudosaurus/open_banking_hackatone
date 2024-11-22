@@ -11,17 +11,21 @@ class Transaction(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     date_time = models.DateTimeField(blank=False, null=False, editable=False, auto_now_add=True)
     expire_date_time = models.DateTimeField(blank=False, null=False, editable=True, default=default_date_time)
+    description = models.TextField(null=True, blank=True)
     
     def __str__(self):
-        return f'Transaction {self.id} from {self.date_time}'
+        return f'Transaction {self.id} from {self.date_time}. {self.description if self.description else ""}'
+    
+    def test(self):
+        print('test')
 
     class Meta:
         verbose_name = 'transaction'
         verbose_name_plural = 'transactions'
-        
+            
 
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = ('id', 'date_time', 'expire_date_time')
+        fields = ('id', 'date_time', 'expire_date_time', 'description')
         

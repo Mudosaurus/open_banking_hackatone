@@ -2,20 +2,19 @@ from django.db import models
 from rest_framework import serializers
 
 
-class OperationType(models.Model):
+class ConsentScope(models.Model):
     id = models.CharField(primary_key=True, max_length=6, blank=False)
     description = models.TextField(blank=False, null=False)
     
     def __str__(self):
-        return f'operation type {self.id} - {self.description}'
-
+        return f'consent scope {self.id} - {self.description}'
+    
     class Meta:
-        verbose_name = 'operation type'
-        verbose_name_plural = 'operation types'
+        verbose_name = 'consent scope'
+        verbose_name_plural = 'consent scopes'
 
 
-class OperationTypeSerializer(serializers.ModelSerializer):
+class ConsentScopeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = OperationType
+        model = ConsentScope
         fields = ('id', 'description')
-        
