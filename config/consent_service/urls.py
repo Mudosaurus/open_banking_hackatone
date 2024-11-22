@@ -1,5 +1,4 @@
 from rest_framework import routers
-from django.views.defaults import permission_denied
 from django.urls import include, path
 
 from .consent_view import ConsentViewSet
@@ -15,5 +14,6 @@ router.register(r'atomic_operation', AtomicOperationViewSet)
 router.register(r'transaction', TransactionViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

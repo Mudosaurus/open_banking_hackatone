@@ -1,33 +1,27 @@
-from rest_framework import serializers
-
+from bank_api.serializers import ClientSerializer, ValuteSerializer, AccountSerializer, LoanSerializer, SalarySerializer
 from . import models
 
 
-class StyleBankClientSerializer(serializers.ModelSerializer):
-    class Meta:
+class StyleBankClientSerializer(ClientSerializer):
+    class Meta(ClientSerializer.Meta):
         model = models.StyleBankClient
-        fields = ('id', 'first_name', 'last_name', 'family_name')
 
 
-class StyleBankValuteSerializer(serializers.ModelSerializer):
-    class Meta:
+class StyleBankValuteSerializer(ValuteSerializer):
+    class Meta(ValuteSerializer.Meta):
         model = models.StyleBankValute
-        fields = ('code', 'name')
 
 
-class StyleBankAccountSerializer(serializers.ModelSerializer):
-    class Meta:
+class StyleBankAccountSerializer(AccountSerializer):
+    class Meta(AccountSerializer.Meta):
         model = models.StyleBankAccount
-        fields = ('id', 'holder', 'valute', 'balance')
 
 
-class StyleBankLoanSerializer(serializers.ModelSerializer):
-    class Meta:
+class StyleBankLoanSerializer(LoanSerializer):
+    class Meta(LoanSerializer.Meta):
         model = models.StyleBankLoan
-        fields = ('id', 'borrower', 'credit_sum', 'pay_rest', 'monthly_pay', 'get_date', 'repayment_date', 'documents')
 
 
-class StyleBankSalarySerializer(serializers.ModelSerializer):
-    class Meta:
+class StyleBankSalarySerializer(SalarySerializer):
+    class Meta(SalarySerializer.Meta):
         model = models.StyleBankSalary
-        fields = ('id', 'account', 'date_time', 'sum', 'category', 'type')

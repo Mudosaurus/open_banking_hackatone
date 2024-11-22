@@ -2,6 +2,9 @@ import os
 
 from pathlib import Path
 
+DB_ADDRESS = '81.200.153.241'
+# DB_ADDRESS = 'localhost'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,11 +30,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
+    'bank_api.apps.BankApiConfig',        
     'e_bank.apps.EBankConfig',
     'style_bank.apps.StyleBankConfig',
     'consent_service.apps.ConsentServiceConfig',
-    'hob_api.apps.HobApiConfig',
     
     'drf_yasg',
     'rest_framework',
@@ -74,7 +77,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('POSTGRES_HOST', '81.200.153.241'),
+        'HOST': os.environ.get('POSTGRES_HOST', DB_ADDRESS),
         'NAME': os.environ.get('POSTGRES_NAME', 'postgres'),
         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
@@ -82,7 +85,7 @@ DATABASES = {
     },
     'e_bank_db': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('POSTGRES_HOST', '81.200.153.241'),
+        'HOST': os.environ.get('POSTGRES_HOST', DB_ADDRESS),
         'NAME': os.environ.get('POSTGRES_EBANK_NAME', 'ebank'),
         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
@@ -90,7 +93,7 @@ DATABASES = {
     },
     'style_bank_db': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('POSTGRES_HOST', '81.200.153.241'),
+        'HOST': os.environ.get('POSTGRES_HOST', DB_ADDRESS),
         'NAME': os.environ.get('POSTGRES_STYLEBANK_NAME', 'stylebank'),
         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
@@ -98,7 +101,7 @@ DATABASES = {
     },
     'consent_db': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('POSTGRES_HOST', '81.200.153.241'),
+        'HOST': os.environ.get('POSTGRES_HOST', DB_ADDRESS),
         'NAME': os.environ.get('POSTGRES_CONSENT_NAME', 'consent'),
         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),

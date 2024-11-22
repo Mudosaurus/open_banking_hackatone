@@ -1,5 +1,5 @@
 import uuid
-from django.contrib.postgres.fields import ArrayField
+# from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from rest_framework import serializers
 from .transaction_model import Transaction
@@ -19,7 +19,7 @@ class Consent(models.Model):
     class Meta:
         verbose_name = 'consent'
         verbose_name_plural = 'consents'
-
+        
 
 class ConsentSerializer(serializers.ModelSerializer):
     class Meta:

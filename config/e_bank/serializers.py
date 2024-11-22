@@ -1,33 +1,27 @@
-from rest_framework import serializers
-
+from bank_api.serializers import ClientSerializer, ValuteSerializer, AccountSerializer, LoanSerializer, SalarySerializer
 from . import models
 
 
-class EBankClientSerializer(serializers.ModelSerializer):
-    class Meta:
+class EBankClientSerializer(ClientSerializer):
+    class Meta(ClientSerializer.Meta):
         model = models.EBankClient
-        fields = ('id', 'first_name', 'last_name', 'family_name')
 
 
-class EBankValuteSerializer(serializers.ModelSerializer):
-    class Meta:
+class EBankValuteSerializer(ValuteSerializer):
+    class Meta(ValuteSerializer.Meta):
         model = models.EBankValute
-        fields = ('code', 'name')
 
 
-class EBankAccountSerializer(serializers.ModelSerializer):
-    class Meta:
+class EBankAccountSerializer(AccountSerializer):
+    class Meta(AccountSerializer.Meta):
         model = models.EBankAccount
-        fields = ('id', 'holder', 'valute', 'balance')
 
 
-class EBankLoanSerializer(serializers.ModelSerializer):
-    class Meta:
+class EBankLoanSerializer(LoanSerializer):
+    class Meta(LoanSerializer.Meta):
         model = models.EBankLoan
-        fields = ('id', 'borrower', 'credit_sum', 'pay_rest', 'monthly_pay', 'get_date', 'repayment_date', 'documents')
 
 
-class EBankSalarySerializer(serializers.ModelSerializer):
-    class Meta:
+class EBankSalarySerializer(SalarySerializer):
+    class Meta(SalarySerializer.Meta):
         model = models.EBankSalary
-        fields = ('id', 'account', 'date_time', 'sum', 'category', 'type')

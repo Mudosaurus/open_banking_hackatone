@@ -21,7 +21,7 @@ class AtomicOperation(models.Model):
     details = models.JSONField()
     
     def __str__(self):
-        return f'atomic operation {self.operation_type} in transaction {self.transaction} in state {self.state}, details: {self.details}'
+        return f'atomic operation {self.operation_type.code} in transaction {self.transaction} in state {self.state}, details: {self.details}'
 
     class Meta:
         verbose_name = 'atomic operation'
