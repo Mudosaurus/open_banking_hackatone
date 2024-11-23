@@ -1,5 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
+from bank_api.execute_operation import execute_operation
+from .models import StyleBankOperation, StyleBankOperationType, StyleBankAccount
 from . import views
 
 
@@ -17,5 +19,9 @@ def get_router() -> routers.DefaultRouter:
     return router
 
 urlpatterns = [
+    path('api/execute_operation',
+         execute_operation,
+         name='execute_operation',
+         kwargs={'operation_model': StyleBankOperation, 'operation_type_model': StyleBankOperationType, 'account_model': StyleBankAccount}),
     path('', include(get_router().urls))
 ]

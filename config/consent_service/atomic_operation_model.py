@@ -32,8 +32,8 @@ class AtomicOperation(models.Model):
         order_with_respect_to = 'transaction'
                                 
     def start(self):
-        if self.state != self.State.CREATED:
-            raise ValueError(f'{str(self)} is not in CREATE state')
+        # if self.state != self.State.CREATED:
+        #     raise ValueError(f'{str(self)} is not in CREATE state')
         
         self.state = self.State.IN_PROGRESS
         self.save()                        
@@ -50,11 +50,14 @@ class AtomicOperation(models.Model):
         if not agent.api_address:
             raise ValueError(f'No api address for {str(agent)}')
         
-        payload = {'details': operation_details}
+        headers = {'operation-type': self.operation_type.id}
         
-        response = requests.post(agent.api_address + '/execute_operation', json=payload)
-        print(agent.api_address + '/execute_operation')
-        print(response.json)
+        if operation_details:
+            headers['operation-details'] = str(operation_details)
+                    
+        response = requests.post(agent.api_address + '/execute_operation', headers=headers)
+        print(response.status_code)
+        print(response.content)        
 
 
 class AtomicOperationSerializer(serializers.ModelSerializer):

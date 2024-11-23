@@ -34,6 +34,7 @@ class Valute(models.Model):
     
 
 class Account(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)        
     holder = models.UUIDField(editable=False, blank=False, null=False)
     # holder = models.ForeignKey('Client', on_delete=models.DO_NOTHING,
     #                            related_name='%(app_label)s_%(class)s_holder',

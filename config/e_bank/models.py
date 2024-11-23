@@ -47,4 +47,4 @@ class EBankOperation(Operation):
 
     class Meta(Operation.Meta):
         app_label = APP_LABEL
-        
+            
