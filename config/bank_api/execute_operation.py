@@ -38,7 +38,12 @@ def execute_operation(request: Request, **kwargs):
     except ValueError as ex:
         raise Http404(str(ex))
     
-    operation.save()        
-    response = HttpResponse(content='Ok - bank')
+    operation.save()   
     
+    try:  
+        operation.execute()   
+    except Exception as ex:
+        return HttpResponseServerError(ex)
+        
+    response = HttpResponse(content='Ok - bank')    
     return response

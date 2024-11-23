@@ -56,9 +56,10 @@ class AtomicOperation(models.Model):
             headers['operation-details'] = str(operation_details)
                     
         response = requests.post(agent.api_address + '/execute_operation', headers=headers)
-        print(response.status_code)
-        print(response.content)        
-
+        
+        if not response.ok:
+            raise RuntimeError(f'{response.status_code} - {response.content}')
+            
 
 class AtomicOperationSerializer(serializers.ModelSerializer):
     class Meta:

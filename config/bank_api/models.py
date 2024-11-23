@@ -122,6 +122,37 @@ class Operation(models.Model):
     account = models.BigIntegerField(null=False)    
     sum = MoneyField()
     
+    def execute(self):
+        handlers = {'TRANSH': self.__transh,
+                    'WRIOFF': self.__write_off}
+        
+        # if self.state != self.State.CREATED:
+        #     raise ValueError(f'{str(self)} is not in CREATE state')
+        
+        self.state = self.State.IN_PROGRESS
+        self.save()        
+                
+        if self.operation_type.id not in handlers:
+            raise KeyError(f'Operation {self.operation_type} not supported')
+        
+        handlers[self.operation_type.id]()                     
+        self.state = self.State.COMMITED
+        self.save()
+
+        
+    def __transh(self):
+        self.account.balance += self.sum
+        self.account.save()
+        
+    
+    def __write_off(self):
+        if self.account.balance - self.sum < 0:
+            raise ValueError(f'Sum of write off {self.sum} greater than sum of balance {self.account.balance}')
+        
+        self.account.balance -= self.sum
+        self.account.save()
+                        
+    
     def __str__(self):
         return f'bank operation {self.operation_type} from {self.date_time} in state {self.state}'
 
