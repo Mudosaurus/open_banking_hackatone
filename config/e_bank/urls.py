@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
 from . import views
+from bank_api.execute_operation import execute_operation
 
 
 def get_router() -> routers.DefaultRouter:
@@ -17,5 +18,6 @@ def get_router() -> routers.DefaultRouter:
 
 
 urlpatterns = [
+    path('api/execute_operation', execute_operation, name='execute_operation'),    
     path('', include(get_router().urls))
 ]

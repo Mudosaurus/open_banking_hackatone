@@ -1,3 +1,4 @@
+import requests
 from django.db import models
 from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
@@ -29,13 +30,31 @@ class AtomicOperation(models.Model):
         verbose_name = 'atomic operation'
         verbose_name_plural = 'atomic operations'
         order_with_respect_to = 'transaction'
-        
+                                
     def start(self):
         if self.state != self.State.CREATED:
-            raise ValueError('Operation is not in CREATE state')
+            raise ValueError(f'{str(self)} is not in CREATE state')
         
         self.state = self.State.IN_PROGRESS
-        self.save()
+        self.save()                        
+        
+        self.__call_agent_api(self.agent, self.agent_details)
+        
+        if self.contragent:
+            self.__call_agent_api(self.contragent, self.contragent_details)
+            
+        self.state = self.State.COMMITED
+        self.save()                                    
+            
+    def __call_agent_api(self, agent, operation_details):
+        if not agent.api_address:
+            raise ValueError(f'No api address for {str(agent)}')
+        
+        payload = {'details': operation_details}
+        
+        response = requests.post(agent.api_address + '/execute_operation', json=payload)
+        print(agent.api_address + '/execute_operation')
+        print(response.json)
 
 
 class AtomicOperationSerializer(serializers.ModelSerializer):
