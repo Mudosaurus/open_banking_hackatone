@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from .money_field import MoneyField
         
         
@@ -91,4 +92,40 @@ class Salary(models.Model):
         abstract=True
         verbose_name = 'salary'
         verbose_name_plural = 'salaries'
+        ordering = ('date_time',)
+
+
+class OperationType(models.Model):
+    id = models.CharField(primary_key=True, max_length=6, blank=False)
+    description = models.TextField(blank=False, null=False)
+    
+    def __str__(self):
+        return f'operation type {self.id} - {self.description}'
+
+    class Meta:
+        abstract = True
+        verbose_name = 'operation type'
+        verbose_name_plural = 'operation types'
+        
+
+class Operation(models.Model):
+    class State(models.IntegerChoices):
+        CREATED = 0, _("Created")
+        IN_PROGRESS = 1, _("In progress")
+        COMMITED = 2, _("Commited")
+        ROLLED = 3, _("Rolled")
+
+    operation_type = models.CharField(primary_key=True, max_length=6, blank=False, null=False)
+    date_time = models.DateTimeField(blank=False, null=False, editable=False, auto_now_add=True)
+    state = models.IntegerField(choices=State, default=State.CREATED, null=False, editable=False)
+    account = models.BigIntegerField(null=False)    
+    sum = MoneyField()
+    
+    def __str__(self):
+        return f'bank operation {self.operation_type} from {self.date_time} in state {self.state}'
+
+    class Meta:
+        abstract=True
+        verbose_name = 'bank operation'
+        verbose_name_plural = 'bank operations'
         ordering = ('date_time',)

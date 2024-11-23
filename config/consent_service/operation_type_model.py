@@ -1,21 +1,14 @@
-from django.db import models
-from rest_framework import serializers
+from bank_api.models import OperationType
+from bank_api.serializers import OperationTypeSerializer
+
+APP_LABEL = 'consent_service'
 
 
-class OperationType(models.Model):
-    id = models.CharField(primary_key=True, max_length=6, blank=False)
-    description = models.TextField(blank=False, null=False)
-    
-    def __str__(self):
-        return f'operation type {self.id} - {self.description}'
-
-    class Meta:
-        verbose_name = 'operation type'
-        verbose_name_plural = 'operation types'
+class ConsentOperattionType(OperationType):
+    class Meta(OperationType.Meta):
+        app_label = APP_LABEL
 
 
-class OperationTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OperationType
-        fields = ('id', 'description')
-        
+class ConsentOperationTypeSerializer(OperationTypeSerializer):
+    class Meta(OperationTypeSerializer.Meta):
+        model = ConsentOperattionType

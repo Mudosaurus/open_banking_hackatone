@@ -15,10 +15,7 @@ class Transaction(models.Model):
     
     def __str__(self):
         return f'Transaction {self.id} from {self.date_time}. {self.description if self.description else ""}'
-    
-    def test(self):
-        print('test')
-
+            
     class Meta:
         verbose_name = 'transaction'
         verbose_name_plural = 'transactions'

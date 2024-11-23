@@ -31,3 +31,15 @@ class SalarySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Salary
         fields = ('id', 'account', 'date_time', 'sum', 'category', 'type')
+
+
+class OperationTypeSerializer(serializers.ModelSerializer):
+    class Meta:        
+        model = models.OperationType
+        fields = ('id', 'description')
+
+
+class OperationSerializer(serializers.ModelSerializer):
+    class Meta:        
+        model = models.Operation
+        fields = ('id', 'operation_type', 'date_time', 'state', 'sum')

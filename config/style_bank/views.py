@@ -26,3 +26,13 @@ class LoanViewSet(ModelViewSet):
 class SalaryViewSet(ModelViewSet):
     queryset = models.StyleBankSalary.objects.all()
     serializer_class = serializers.StyleBankSalarySerializer
+
+
+class OperationTypeViewSet(ModelViewSet):
+    queryset = models.StyleBankOperationType.objects.all()
+    serializer_class = serializers.StyleBankOperationTypeSerializer
+
+
+class OperationViewSet(ModelViewSet):
+    queryset = models.StyleBankOperation.objects.all()
+    serializer_class = serializers.StyleBankOperationSerializer

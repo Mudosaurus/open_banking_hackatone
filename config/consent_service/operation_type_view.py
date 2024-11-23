@@ -1,7 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
-from .operation_type_model import OperationType, OperationTypeSerializer
+from .operation_type_model import ConsentOperattionType, ConsentOperationTypeSerializer
 
 
-class OperationTypeViewSet(ModelViewSet):
-    queryset = OperationType.objects.all()
-    serializer_class = OperationTypeSerializer
+class ConsentOperationTypeViewSet(ModelViewSet):
+    queryset = ConsentOperattionType.objects.all()
+    serializer_class = ConsentOperationTypeSerializer
+

@@ -1,4 +1,4 @@
-from bank_api.serializers import ClientSerializer, ValuteSerializer, AccountSerializer, LoanSerializer, SalarySerializer
+from bank_api.serializers import ClientSerializer, ValuteSerializer, AccountSerializer, LoanSerializer, SalarySerializer, OperationTypeSerializer, OperationSerializer
 from . import models
 
 
@@ -25,3 +25,13 @@ class StyleBankLoanSerializer(LoanSerializer):
 class StyleBankSalarySerializer(SalarySerializer):
     class Meta(SalarySerializer.Meta):
         model = models.StyleBankSalary
+
+
+class StyleBankOperationTypeSerializer(OperationTypeSerializer):
+    class Meta(OperationTypeSerializer.Meta):
+        model = models.StyleBankOperationType
+
+
+class StyleBankOperationSerializer(OperationSerializer):
+    class Meta(OperationSerializer.Meta):
+        model = models.StyleBankOperation

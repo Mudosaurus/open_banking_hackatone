@@ -1,5 +1,5 @@
 from django.db import models
-from bank_api.models import Client, Valute, Account, Loan, Salary
+from bank_api.models import Client, Valute, Account, Loan, Salary, OperationType, Operation
 
 APP_LABEL = 'style_bank'
 
@@ -29,7 +29,21 @@ class StyleBankLoan(Loan):
 
 
 class StyleBankSalary(Salary):
-    account = models.ForeignKey(StyleBankAccount, on_delete=models.DO_NOTHING, null=False)
+    account = models.ForeignKey(StyleBankAccount, on_delete=models.RESTRICT, null=False, blank=False)
     
     class Meta(Salary.Meta):
         app_label = APP_LABEL
+
+
+class StyleBankOperationType(OperationType):
+    class Meta(OperationType.Meta):
+        app_label = APP_LABEL
+
+
+class StyleBankOperation(Operation):
+    operation_type = models.ForeignKey(StyleBankOperationType, null=False, blank=False, on_delete=models.RESTRICT)    
+    account = models.ForeignKey(StyleBankAccount, on_delete=models.RESTRICT, null=False, blank=False)    
+
+    class Meta(Operation.Meta):
+        app_label = APP_LABEL
+        
